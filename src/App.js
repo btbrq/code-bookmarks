@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+/*global chrome*/
+import { useEffect, useState } from 'react';
 import './App.css';
+import { Input, Space } from 'antd';
+import { SettingFilled } from '@ant-design/icons';
+import { getBookmarksFile, openFile } from './util'
 
-function App() {
+const App = () => {
+  const { Search } = Input;
+  const onSearch = value => console.log(value);
+  const [bookmarks, setBookmarks] = useState([])
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    if (!loaded) {
+      chrome.storage.local.get(['codeBookmarks'], function (result) {
+        if (result.codeBookmarks) {
+          const newLocal = JSON.parse(result.codeBookmarks);
+          setLoaded(true);
+          setBookmarks(newLocal);
+        }
+      });
+    }
+  });
+
+  console.log(bookmarks)
+  
+  const bks = bookmarks && bookmarks.map(b => b.category)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Space direction="horizontal">
+        <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+        <SettingFilled onClick={openFile} />
+      </Space>
+        Test React2222
+        <div>
+          {bks}
+        </div>
     </div>
   );
 }
