@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-tabs-nav-wrap {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.ant-tabs-tab-btn, .ant-tabs-tab-btn:active, .ant-tabs-tab-btn:focus, .ant-tabs-tab-remove:active, .ant-tabs-tab-remove:focus {
+  color: #000 !important;
+}
+
+.ant-tabs-tab:hover {
+  color: #000 !important;
+}
+
+.ant-tabs-ink-bar {
+  color: #ff4d4f !important;
+  background-color: #ff4d4f !important;
+}

@@ -1,12 +1,11 @@
 /*global chrome*/
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Input, Space } from 'antd';
+import { Input, Space, Tooltip } from 'antd';
 import { SettingFilled, SearchOutlined } from '@ant-design/icons';
-import { getBookmarksComponent, openFile } from './util'
+import { filterBookmarks, getBookmarksComponent, openFile } from './util'
 
 const App = () => {
-  const onSearch = value => console.log(value);
   const [bookmarks, setBookmarks] = useState([])
   const [loaded, setLoaded] = useState(false)
 
@@ -31,6 +30,12 @@ const App = () => {
     });
   }
 
+  const onSearch = (e) => {
+    if (loaded && bookmarks.length > 0) {
+      setBookmarks(filterBookmarks(e.target.value, bookmarks));
+    }
+  }
+
   const bookmarksComponent = getBookmarksComponent(loaded, bookmarks);
 
   return (
@@ -45,7 +50,9 @@ const App = () => {
             <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
           }
         />
-        <SettingFilled onClick={openBookmarksFile} />
+        <Tooltip title="Select the file with bookmarks">
+          <SettingFilled onClick={openBookmarksFile} />
+        </Tooltip>
       </Space>
       <div style={{ marginTop: -10 }}>
         {bookmarksComponent}
