@@ -12,33 +12,42 @@ const App = () => {
 
   useEffect(() => {
     if (!loaded) {
-      chrome.storage.local.get(['codeBookmarks'], function (result) {
-        if (result.codeBookmarks) {
-          setLoaded(true);
-          const newLocal = JSON.parse(result.codeBookmarks);
-          setBookmarks(newLocal);
-        }
-      });
+      getBookmarksFromStorage()
     }
   });
+
+  const openBookmarksFile = async () => {
+    await openFile()
+    await getBookmarksFromStorage()
+  }
+
+  const getBookmarksFromStorage = () => {
+    chrome.storage.local.get(['codeBookmarks'], function (result) {
+      if (result.codeBookmarks) {
+        setLoaded(true);
+        const newLocal = JSON.parse(result.codeBookmarks);
+        setBookmarks(newLocal);
+      }
+    });
+  }
 
   const bookmarksComponent = getBookmarksComponent(loaded, bookmarks);
 
   return (
     <div className="App">
-      <Space direction="horizontal" style={{padding: 20}}>
+      <Space direction="horizontal" style={{ padding: 20 }}>
         <Input
           placeholder="Search bookmarks"
           style={{ width: 300, borderRadius: 25 }}
           allowClear
           onChange={onSearch}
           suffix={
-              <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+            <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
           }
         />
-        <SettingFilled onClick={openFile} />
+        <SettingFilled onClick={openBookmarksFile} />
       </Space>
-      <div style={{marginTop: -10}}>
+      <div style={{ marginTop: -10 }}>
         {bookmarksComponent}
       </div>
     </div>
