@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Input, Space } from 'antd';
-import { SettingFilled } from '@ant-design/icons';
-import { getBookmarksFile, openFile } from './util'
+import { SettingFilled, SearchOutlined } from '@ant-design/icons';
+import { getBookmarksComponent, openFile } from './util'
 
 const App = () => {
-  const { Search } = Input;
+  // const { Search } = Input;
   const onSearch = value => console.log(value);
   const [bookmarks, setBookmarks] = useState([])
   const [loaded, setLoaded] = useState(false)
@@ -15,28 +15,34 @@ const App = () => {
     if (!loaded) {
       chrome.storage.local.get(['codeBookmarks'], function (result) {
         if (result.codeBookmarks) {
-          const newLocal = JSON.parse(result.codeBookmarks);
           setLoaded(true);
+          const newLocal = JSON.parse(result.codeBookmarks);
           setBookmarks(newLocal);
         }
       });
     }
   });
 
-  console.log(bookmarks)
-  
-  const bks = bookmarks && bookmarks.map(b => b.category)
+  const bookmarksComponent = getBookmarksComponent(loaded, bookmarks);
 
   return (
     <div className="App">
       <Space direction="horizontal">
-        <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+        {/* <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 300 }} /> */}
+        <Input
+          placeholder="Search bookmarks"
+          style={{ width: 300, borderRadius: 25 }}
+          allowClear
+          onChange={onSearch}
+          suffix={
+              <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+          }
+        />
         <SettingFilled onClick={openFile} />
       </Space>
-        Test React2222
-        <div>
-          {bks}
-        </div>
+      <div>
+        {bookmarksComponent}
+      </div>
     </div>
   );
 }

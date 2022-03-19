@@ -12,6 +12,6 @@
     "extension_ids": []
   }],
   "permissions": [
-    "storage"
+    "storage", "tabs"
   ]
 }
