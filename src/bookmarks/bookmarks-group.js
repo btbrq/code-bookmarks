@@ -6,7 +6,7 @@ const BookmarksGroup = (props) => {
 
     const comp = (
         <>
-            <Divider orientation="left" style={{"font-size": "14px", "border-top-color": "red"}}>
+            <Divider orientation="left" style={{fontSize: 14, borderTopColor: "#d9363e", fontWeight: "normal", marginTop: 5}}>
                 {group}
             </Divider>
             <>

@@ -6,7 +6,7 @@ const BookmarksView = (props) => {
 
   const comp = bookmarks.map(b => {
     return (
-      <div>
+      <div style={{maxHeight: 300, overflow: "auto"}}>
         {
           b.bookmarksGroups.map(g => {
             return (<BookmarksGroup group={g.group} bookmarks={g.bookmarks} />)

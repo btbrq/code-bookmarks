@@ -6,7 +6,6 @@ import { SettingFilled, SearchOutlined } from '@ant-design/icons';
 import { getBookmarksComponent, openFile } from './util'
 
 const App = () => {
-  // const { Search } = Input;
   const onSearch = value => console.log(value);
   const [bookmarks, setBookmarks] = useState([])
   const [loaded, setLoaded] = useState(false)
@@ -27,8 +26,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Space direction="horizontal">
-        {/* <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 300 }} /> */}
+      <Space direction="horizontal" style={{padding: 20}}>
         <Input
           placeholder="Search bookmarks"
           style={{ width: 300, borderRadius: 25 }}
@@ -40,7 +38,7 @@ const App = () => {
         />
         <SettingFilled onClick={openFile} />
       </Space>
-      <div>
+      <div style={{marginTop: -10}}>
         {bookmarksComponent}
       </div>
     </div>
