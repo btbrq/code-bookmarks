@@ -7,6 +7,7 @@ import { filterBookmarks, getBookmarksComponent, openFile } from './util'
 
 const App = () => {
   const [bookmarks, setBookmarks] = useState([])
+  const [baseBookmarks, setBaseBookmarks] = useState([])
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -24,15 +25,22 @@ const App = () => {
     chrome.storage.local.get(['codeBookmarks'], function (result) {
       if (result.codeBookmarks) {
         setLoaded(true);
-        const newLocal = JSON.parse(result.codeBookmarks);
-        setBookmarks(newLocal);
+        setBookmarks(JSON.parse(result.codeBookmarks));
+        setBaseBookmarks(JSON.parse(result.codeBookmarks));
       }
     });
   }
 
   const onSearch = (e) => {
-    if (loaded && bookmarks.length > 0) {
-      setBookmarks(filterBookmarks(e.target.value, bookmarks));
+    var text = e.target.value;
+    if (text === "") {
+      setBookmarks(baseBookmarks);
+    } else {
+      if (loaded && baseBookmarks.length > 0) {
+        console.log(baseBookmarks);
+        var bks = filterBookmarks(text, baseBookmarks);
+        setBookmarks(bks);
+      }
     }
   }
 
