@@ -18,7 +18,7 @@ const bookmarkMatches = (bookmark, text) => {
     return textMatches(bookmark.title, text) || textMatches(bookmark.url, text) || textMatches(bookmark.tldr, text) ;
 }
 
-
 const textMatches = (field, text) => {
-    return field.toLowerCase().includes(text.toLowerCase())
+    var regex = text.split(/[(?=\\p{Lu}) ]/).join(".*").toLowerCase();
+    return field.toLowerCase().match(regex);
 }

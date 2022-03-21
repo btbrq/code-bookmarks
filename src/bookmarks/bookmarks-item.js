@@ -1,24 +1,22 @@
 import { Divider, Button } from 'antd';
+import { openUrl } from '../util';
 
 const BookmarksItem = (props) => {
     const { item, appendDivider } = props;
 
     return (
         <>
-            {/* <a href={item.url}
-            // onClick={() => onUrlClick(this, b.url)}
-            // onClick={() => openUrl(b.url)}
-            // onClick={() => window.close()}
-            >
+            <Button
+                href={item.url}
+                onClick={(e) => {
+                    openUrl(e, item.url);
+                }}
+                type="primary" shape="round" danger style={{ marginBottom: 10 }}>
                 {item.title}
-            </a> */}
-            <Button href={item.url} type="primary" shape="round" danger style={{marginBottom: 10}}> 
-                {item.title}
-             </Button>
+            </Button>
             {appendDivider &&
                 <Divider type="vertical" />
             }
-
         </>
     );
 }
