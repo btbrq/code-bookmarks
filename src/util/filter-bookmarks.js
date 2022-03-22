@@ -9,7 +9,11 @@ export const filterBookmarks = (text, bookmarks) => {
                 return bookmarkMatches(b, text);
             })]
         })
-    })
+    });
+
+    bks.forEach(bc => {
+        bc.bookmarksGroups = [...bc.bookmarksGroups.filter(g => g.bookmarks.length > 0)]
+    });
 
     return bks;
 }
@@ -19,6 +23,7 @@ const bookmarkMatches = (bookmark, text) => {
 }
 
 const textMatches = (field, text) => {
-    var regex = text.split(/[(?=\\p{Lu}) ]/).join(".*").toLowerCase();
+    var regex = text.split(/ |(?=[A-Z])/).join(".*").toLowerCase();
+    console.log(regex);
     return field.toLowerCase().match(regex);
 }

@@ -1,0 +1,72 @@
+[
+    {
+        "category": "Category 1",
+        "bookmarksGroups": [
+            {
+                "group": "Group 1",
+                "bookmarks": [
+                    {
+                        "title": "Bookmark 1",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    },
+                    {
+                        "title": "Bookmark 2",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    }
+                ]
+            },
+            {
+                "group": "Group 2",
+                "bookmarks": [
+                    {
+                        "title": "Bookmark 1",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "category": "Category 2",
+        "bookmarksGroups": [
+            {
+                "group": "Group 1",
+                "bookmarks": [
+                    {
+                        "title": "Bookmark 1",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    },
+                    {
+                        "title": "Bookmark 2",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    }
+                ]
+            },
+            {
+                "group": "Group 2",
+                "bookmarks": [
+                    {
+                        "title": "Bookmark 1",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    }
+                ]
+            },
+            {
+                "group": "Group 3",
+                "bookmarks": [
+                    {
+                        "title": "Bookmark 1",
+                        "url": "https://www.google.pl",
+                        "tldr": "TLDR TLDR"
+                    }
+                ]
+            }
+        ]
+    }
+]
