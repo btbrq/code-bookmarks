@@ -54,3 +54,8 @@
   color: #ff4d4f !important;
   background-color: #ff4d4f !important;
 }
+
+.ant-input-affix-wrapper {
+  transition: none !important;
+  transition-duration: 0 !important;
+}
