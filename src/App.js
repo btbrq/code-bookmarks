@@ -1,18 +1,20 @@
 /*global chrome*/
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { Input, Space, Tooltip } from 'antd';
 import { SettingFilled, SearchOutlined } from '@ant-design/icons';
 import { filterBookmarks, getBookmarksComponent, openFile } from './util'
 
 const App = () => {
+  const searchRef = useRef(null);
   const [bookmarks, setBookmarks] = useState([])
   const [baseBookmarks, setBaseBookmarks] = useState([])
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     if (!loaded) {
-      getBookmarksFromStorage()
+      searchRef.current.focus();
+      getBookmarksFromStorage();
     }
   });
 
@@ -54,6 +56,7 @@ const App = () => {
           style={{ width: 300, borderRadius: 25 }}
           allowClear
           onChange={onSearch}
+          ref={searchRef}
           suffix={
             <SearchOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
           }
